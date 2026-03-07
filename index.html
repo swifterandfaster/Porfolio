@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>swifterandfaster | Portfolio</title>
+  <meta name="description" content="Portfolio of swifterandfaster | Unity Developer, VR Developer, API Engineer, Level Designer, Lead Dev at Northline Games." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">swift<span>&</span>faster</div>
+  <ul class="nav-links">
+    <li><a href="#unity">Unity</a></li>
+    <li><a href="#api">API</a></li>
+    <li><a href="#leveldesign">Level Design</a></li>
+    <li><a href="#vr">VR Dev</a></li>
+    <li><a href="#northline">Northline</a></li>
+    <li><a href="#modding">Modding</a></li>
+    <li><a href="#achievements">Awards</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="lightbox">
+  <div class="lightbox-close">✕</div>
+  <img src="" alt="Screenshot preview" />
+</div>
+
+<div class="container">
+  <div class="hero fade-up d1">
+    <div class="hero-eyebrow">Portfolio</div>
+    <h1 class="hero-name">swifter<br><span class="accent">andfaster</span></h1>
+    <p class="hero-tagline fade-up d2">Game developer, VR engineer, modder, and lead at Northline Games. Building things worth playing.</p>
+    <div class="hero-roles fade-up d3">
+      <span class="role-tag primary" data-target="unity">Unity Dev</span>
+      <span class="role-tag" data-target="api">API Engineer</span>
+      <span class="role-tag" data-target="leveldesign">Level Designer</span>
+      <span class="role-tag" data-target="vr">VR Developer</span>
+      <span class="role-tag" data-target="northline">Lead Dev</span>
+      <span class="role-tag" data-target="modding">Modder</span>
+    </div>
+    <div class="hero-cta fade-up d4">
+      <a href="#contact" class="btn btn-primary">Get In Touch</a>
+      <a href="#northline" class="btn btn-outline">View Live Project</a>
+    </div>
+    <div class="hero-scroll-hint fade-up d5">
+      <div class="scroll-line"></div>
+      Scroll to explore
+    </div>
+  </div>
+</div>
+
+<section id="unity">
+  <div class="container">
+    <div class="section-label">Development</div>
+    <h2 class="section-title">Unity Developer</h2>
+    <p class="section-sub">Experienced building gameplay systems, tools, and VR mechanics in Unity. Below are example scripts showcasing architecture and coding style.</p>
+
+    <div class="grid-2" style="margin-bottom: 40px;">
+      <div class="card">
+        <div class="card-meta">Specialisation</div>
+        <div class="card-title">Gameplay Systems</div>
+        <div class="card-body">Player controllers, physics interactions, inventory systems, UI frameworks, and game state management.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Specialisation</div>
+        <div class="card-title">VR Integration</div>
+        <div class="card-body">XR Toolkit, hand tracking, spatial UI, haptic feedback systems, and immersive environment scripting.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Specialisation</div>
+        <div class="card-title">Editor Tooling</div>
+        <div class="card-body">Custom inspectors, property drawers, editor windows, and automation scripts to speed up the development pipeline.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Specialisation</div>
+        <div class="card-title">Architecture</div>
+        <div class="card-body">ScriptableObject driven design, event systems, singleton patterns, and clean separation of concerns across large codebases.</div>
+      </div>
+    </div>
+
+    <div class="code-editor-wrapper">
+      <div class="editor-titlebar">
+        <div class="editor-dots">
+          <div class="editor-dot red"></div>
+          <div class="editor-dot yellow"></div>
+          <div class="editor-dot green"></div>
+        </div>
+        <div class="editor-tabs">
+          <div class="editor-tab active" data-tab="movement">PlayerMovement.cs</div>
+          <div class="editor-tab" data-tab="inventory">InventorySystem.cs</div>
+          <div class="editor-tab" data-tab="gamemanager">GameManager.cs</div>
+          <div class="editor-tab" data-tab="vrtool">VRGrabTool.cs</div>
+        </div>
+      </div>
+
+      <div class="code-panel active" data-panel="movement">
+        <pre><span class="code-line"><span class="kw">using</span> <span class="ty">UnityEngine</span>;</span>
+<span class="code-line"><span class="kw">using</span> <span class="ty">UnityEngine.InputSystem</span>;</span>
+<span class="code-line"></span>
+<span class="code-line">[<span class="cl">RequireComponent</span>(<span class="kw">typeof</span>(<span class="cl">CharacterController</span>))]</span>
+<span class="code-line"><span class="kw">public class</span> <span class="cl">PlayerMovement</span> : <span class="cl">MonoBehaviour</span></span>
+<span class="code-line">{</span>
+<span class="code-line">    [<span class="cl">Header</span>(<span class="st">"Movement Settings"</span>)]</span>
+<span class="code-line">    [<span class="cl">SerializeField</span>] <span class="kw">private float</span> <span class="nm">moveSpeed</span> = <span class="nm">5f</span>;</span>
+<span class="code-line">    [<span class="cl">SerializeField</span>] <span class="kw">private float</span> <span class="nm">sprintMultiplier</span> = <span class="nm">1.6f</span>;</span>
+<span class="code-line">    [<span class="cl">SerializeField</span>] <span class="kw">private float</span> <span class="nm">jumpHeight</span> = <span class="nm">2f</span>;</span>
+<span class="code-line">    [<span class="cl">SerializeField</span>] <span class="kw">private float</span> <span class="nm">gravity</span> = <span class="nm">-9.81f</span>;</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="kw">private</span> <span class="cl">CharacterController</span> <span class="nm">_controller</span>;</span>
+<span class="code-line">    <span class="kw">private</span> <span class="cl">Vector3</span> <span class="nm">_velocity</span>;</span>
+<span class="code-line">    <span class="kw">private</span> <span class="cl">PlayerInputActions</span> <span class="nm">_input</span>;</span>
+<span class="code-line">    <span class="kw">private bool</span> <span class="nm">_isSprinting</span>;</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="kw">private void</span> <span class="fn">Awake</span>()</span>
+<span class="code-line">    {</span>
+<span class="code-line">        _controller = <span class="fn">GetComponent</span>&lt;<span class="cl">CharacterController</span>&gt;();</span>
+<span class="code-line">        _input = <span class="kw">new</span> <span class="cl">PlayerInputActions</span>();</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="kw">private void</span> <span class="fn">OnEnable</span>() =&gt; _input.<span class="fn">Enable</span>();</span>
+<span class="code-line">    <span class="kw">private void</span> <span class="fn">OnDisable</span>() =&gt; _input.<span class="fn">Disable</span>();</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="kw">private void</span> <span class="fn">Update</span>()</span>
+<span class="code-line">    {</span>
+<span class="code-line">        <span class="cl">Vector2</span> <span class="nm">moveInput</span> = _input.Player.Move.<span class="fn">ReadValue</span>&lt;<span class="cl">Vector2</span>&gt;();</span>
+<span class="code-line">        <span class="nm">_isSprinting</span> = _input.Player.Sprint.<span class="fn">IsPressed</span>();</span>
+<span class="code-line"></span>
+<span class="code-line">        <span class="kw">float</span> <span class="nm">currentSpeed</span> = <span class="nm">moveSpeed</span> * (_isSprinting ? <span class="nm">sprintMultiplier</span> : <span class="nm">1f</span>);</span>
+<span class="code-line">        <span class="cl">Vector3</span> <span class="nm">move</span> = transform.right * moveInput.x + transform.forward * moveInput.y;</span>
+<span class="code-line">        _controller.<span class="fn">Move</span>(move * currentSpeed * <span class="cl">Time</span>.deltaTime);</span>
+<span class="code-line"></span>
+<span class="code-line">        <span class="kw">if</span> (_controller.isGrounded &amp;&amp; _velocity.y &lt; <span class="nm">0f</span>)</span>
+<span class="code-line">            _velocity.y = <span class="nm">-2f</span>;</span>
+<span class="code-line"></span>
+<span class="code-line">        <span class="kw">if</span> (_controller.isGrounded &amp;&amp; _input.Player.Jump.<span class="fn">WasPressedThisFrame</span>())</span>
+<span class="code-line">            _velocity.y = <span class="cl">Mathf</span>.<span class="fn">Sqrt</span>(<span class="nm">jumpHeight</span> * -<span class="nm">2f</span> * <span class="nm">gravity</span>);</span>
+<span class="code-line"></span>
+<span class="code-line">        _velocity.y += <span class="nm">gravity</span> * <span class="cl">Time</span>.deltaTime;</span>
+<span class="code-line">        _controller.<span class="fn">Move</span>(_velocity * <span class="cl">Time</span>.deltaTime);</span>
+<span class="code-line">    }</span>
+<span class="code-line">}</span></pre>
+      </div>
+
+      <div class="code-panel" data-panel="inventory">
+        <pre><span class="code-line"><span class="kw">using</span> <span class="ty">System.Collections.Generic</span>;</span>
+<span class="code-line"><span class="kw">using</span> <span class="ty">UnityEngine</span>;</span>
+<span class="code-line"><span class="kw">using</span> <span class="ty">UnityEngine.Events</span>;</span>
+<span class="code-line"></span>
+<span class="code-line">[<span class="cl">CreateAssetMenu</span>(fileName = <span class="st">"Inventory"</span>, menuName = <span class="st">"Game/Inventory"</span>)]</span>
+<span class="code-line"><span class="kw">public class</span> <span class="cl">InventorySystem</span> : <span class="cl">ScriptableObject</span></span>
+<span class="code-line">{</span>
+<span class="code-line">    [<span class="cl">SerializeField</span>] <span class="kw">private int</span> <span class="nm">maxSlots</span> = <span class="nm">24</span>;</span>
+<span class="code-line">    <span class="kw">private</span> <span class="cl">List</span>&lt;<span class="cl">ItemStack</span>&gt; <span class="nm">_slots</span> = <span class="kw">new</span>();</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="kw">public</span> <span class="cl">UnityEvent</span>&lt;<span class="cl">ItemStack</span>&gt; onItemAdded;</span>
+<span class="code-line">    <span class="kw">public</span> <span class="cl">UnityEvent</span>&lt;<span class="cl">ItemStack</span>&gt; onItemRemoved;</span>
+<span class="code-line">    <span class="kw">public</span> <span class="cl">UnityEvent</span> onInventoryFull;</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="kw">public bool</span> <span class="fn">AddItem</span>(<span class="cl">ItemData</span> <span class="nm">item</span>, <span class="kw">int</span> <span class="nm">quantity</span> = <span class="nm">1</span>)</span>
+<span class="code-line">    {</span>
+<span class="code-line">        <span class="cl">ItemStack</span> <span class="nm">existing</span> = _slots.<span class="fn">Find</span>(<span class="nm">s</span> =&gt; s.data == item &amp;&amp; s.count &lt; item.maxStack);</span>
+<span class="code-line">        <span class="kw">if</span> (existing != <span class="kw">null</span>)</span>
+<span class="code-line">        {</span>
+<span class="code-line">            existing.count += quantity;</span>
+<span class="code-line">            onItemAdded?.<span class="fn">Invoke</span>(existing);</span>
+<span class="code-line">            <span class="kw">return true</span>;</span>
+<span class="code-line">        }</span>
+<span class="code-line"></span>
+<span class="code-line">        <span class="kw">if</span> (_slots.Count &gt;= maxSlots)</span>
+<span class="code-line">        {</span>
+<span class="code-line">            onInventoryFull?.<span class="fn">Invoke</span>();</span>
+<span class="code-line">            <span class="kw">return false</span>;</span>
+<span class="code-line">        }</span>
+<span class="code-line"></span>
+<span class="code-line">        <span class="cl">ItemStack</span> <span class="nm">newStack</span> = <span class="kw">new</span>() { data = item, count = quantity };</span>
+<span class="code-line">        _slots.<span class="fn">Add</span>(newStack);</span>
+<span class="code-line">        onItemAdded?.<span class="fn">Invoke</span>(newStack);</span>
+<span class="code-line">        <span class="kw">return true</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="kw">public bool</span> <span class="fn">RemoveItem</span>(<span class="cl">ItemData</span> <span class="nm">item</span>, <span class="kw">int</span> <span class="nm">quantity</span> = <span class="nm">1</span>)</span>
+<span class="code-line">    {</span>
+<span class="code-line">        <span class="cl">ItemStack</span> <span class="nm">stack</span> = _slots.<span class="fn">Find</span>(<span class="nm">s</span> =&gt; s.data == item);</span>
+<span class="code-line">        <span class="kw">if</span> (stack == <span class="kw">null</span> || stack.count &lt; quantity) <span class="kw">return false</span>;</span>
+<span class="code-line"></span>
+<span class="code-line">        stack.count -= quantity;</span>
+<span class="code-line">        <span class="kw">if</span> (stack.count &lt;= <span class="nm">0</span>) _slots.<span class="fn">Remove</span>(stack);</span>
+<span class="code-line">        onItemRemoved?.<span class="fn">Invoke</span>(stack);</span>
+<span class="code-line">        <span class="kw">return true</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="kw">public</span> <span class="cl">IReadOnlyList</span>&lt;<span class="cl">ItemStack</span>&gt; <span class="fn">GetSlots</span>() =&gt; _slots.AsReadOnly();</span>
+<span class="code-line">    <span class="kw">public int</span> <span class="fn">GetItemCount</span>(<span class="cl">ItemData</span> <span class="nm">item</span>) =&gt; _slots.<span class="fn">Find</span>(<span class="nm">s</span> =&gt; s.data == item)?.count ?? <span class="nm">0</span>;</span>
+<span class="code-line">    <span class="kw">public bool</span> <span class="fn">HasItem</span>(<span class="cl">ItemData</span> <span class="nm">item</span>, <span class="kw">int</span> <span class="nm">qty</span> = <span class="nm">1</span>) =&gt; <span class="fn">GetItemCount</span>(item) &gt;= qty;</span>
+<span class="code-line">    <span class="kw">public void</span> <span class="fn">Clear</span>() { _slots.<span class="fn">Clear</span>(); }</span>
+<span class="code-line">}</span></pre>
+      </div>
+
+      <div class="code-panel" data-panel="gamemanager">
+        <pre><span class="code-line"><span class="kw">using</span> <span class="ty">UnityEngine</span>;</span>
+<span class="code-line"><span class="kw">using</span> <span class="ty">UnityEngine.SceneManagement</span>;</span>
+<span class="code-line"><span class="kw">using</span> <span class="ty">System</span>;</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="kw">public class</span> <span class="cl">GameManager</span> : <span class="cl">MonoBehaviour</span></span>
+<span class="code-line">{</span>
+<span class="code-line">    <span class="kw">public static</span> <span class="cl">GameManager</span> Instance { <span class="kw">get; private set</span>; }</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="kw">public static event</span> <span class="cl">Action</span>&lt;<span class="cl">GameState</span>&gt; OnStateChanged;</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="kw">private</span> <span class="cl">GameState</span> <span class="nm">_currentState</span> = <span class="cl">GameState</span>.MainMenu;</span>
+<span class="code-line">    <span class="kw">public</span> <span class="cl">GameState</span> CurrentState =&gt; _currentState;</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="kw">private void</span> <span class="fn">Awake</span>()</span>
+<span class="code-line">    {</span>
+<span class="code-line">        <span class="kw">if</span> (Instance != <span class="kw">null</span> &amp;&amp; Instance != <span class="kw">this</span>)</span>
+<span class="code-line">        {</span>
+<span class="code-line">            <span class="cl">Destroy</span>(gameObject);</span>
+<span class="code-line">            <span class="kw">return</span>;</span>
+<span class="code-line">        }</span>
+<span class="code-line">        Instance = <span class="kw">this</span>;</span>
+<span class="code-line">        <span class="cl">DontDestroyOnLoad</span>(gameObject);</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="kw">public void</span> <span class="fn">SetState</span>(<span class="cl">GameState</span> <span class="nm">newState</span>)</span>
+<span class="code-line">    {</span>
+<span class="code-line">        <span class="kw">if</span> (_currentState == newState) <span class="kw">return</span>;</span>
+<span class="code-line">        _currentState = newState;</span>
+<span class="code-line">        OnStateChanged?.<span class="fn">Invoke</span>(_currentState);</span>
+<span class="code-line">        <span class="fn">HandleStateTransition</span>(_currentState);</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="kw">private void</span> <span class="fn">HandleStateTransition</span>(<span class="cl">GameState</span> <span class="nm">state</span>)</span>
+<span class="code-line">    {</span>
+<span class="code-line">        <span class="kw">switch</span> (state)</span>
+<span class="code-line">        {</span>
+<span class="code-line">            <span class="kw">case</span> <span class="cl">GameState</span>.Playing:</span>
+<span class="code-line">                <span class="cl">Time</span>.timeScale = <span class="nm">1f</span>;</span>
+<span class="code-line">                <span class="cl">Cursor</span>.lockState = <span class="cl">CursorLockMode</span>.Locked;</span>
+<span class="code-line">                <span class="kw">break</span>;</span>
+<span class="code-line">            <span class="kw">case</span> <span class="cl">GameState</span>.Paused:</span>
+<span class="code-line">                <span class="cl">Time</span>.timeScale = <span class="nm">0f</span>;</span>
+<span class="code-line">                <span class="cl">Cursor</span>.lockState = <span class="cl">CursorLockMode</span>.None;</span>
+<span class="code-line">                <span class="kw">break</span>;</span>
+<span class="code-line">            <span class="kw">case</span> <span class="cl">GameState</span>.GameOver:</span>
+<span class="code-line">                <span class="cl">Time</span>.timeScale = <span class="nm">0f</span>;</span>
+<span class="code-line">                <span class="cl">Cursor</span>.lockState = <span class="cl">CursorLockMode</span>.None;</span>
+<span class="code-line">                <span class="kw">break</span>;</span>
+<span class="code-line">        }</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="kw">public void</span> <span class="fn">LoadScene</span>(<span class="kw">string</span> <span class="nm">sceneName</span>) =&gt;</span>
+<span class="code-line">        <span class="cl">SceneManager</span>.<span class="fn">LoadSceneAsync</span>(sceneName);</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="kw">public void</span> <span class="fn">QuitGame</span>() =&gt; <span class="cl">Application</span>.<span class="fn">Quit</span>();</span>
+<span class="code-line">}</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="kw">public enum</span> <span class="cl">GameState</span> { MainMenu, Playing, Paused, GameOver, Loading }</span></pre>
+      </div>
+
+      <div class="code-panel" data-panel="vrtool">
+        <pre><span class="code-line"><span class="kw">using</span> <span class="ty">UnityEngine</span>;</span>
+<span class="code-line"><span class="kw">using</span> <span class="ty">UnityEngine.XR.Interaction.Toolkit</span>;</span>
+<span class="code-line"><span class="kw">using</span> <span class="ty">UnityEngine.Events</span>;</span>
+<span class="code-line"></span>
+<span class="code-line">[<span class="cl">RequireComponent</span>(<span class="kw">typeof</span>(<span class="cl">XRGrabInteractable</span>))]</span>
+<span class="code-line"><span class="kw">public class</span> <span class="cl">VRGrabTool</span> : <span class="cl">MonoBehaviour</span></span>
+<span class="code-line">{</span>
+<span class="code-line">    [<span class="cl">Header</span>(<span class="st">"Tool Settings"</span>)]</span>
+<span class="code-line">    [<span class="cl">SerializeField</span>] <span class="kw">private float</span> <span class="nm">toolRange</span> = <span class="nm">0.3f</span>;</span>
+<span class="code-line">    [<span class="cl">SerializeField</span>] <span class="kw">private</span> <span class="cl">LayerMask</span> <span class="nm">interactableLayer</span>;</span>
+<span class="code-line">    [<span class="cl">SerializeField</span>] <span class="kw">private</span> <span class="cl">HapticImpulseProvider</span> <span class="nm">haptics</span>;</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="kw">public</span> <span class="cl">UnityEvent</span>&lt;<span class="cl">Collider</span>&gt; onToolActivated;</span>
+<span class="code-line">    <span class="kw">public</span> <span class="cl">UnityEvent</span> onToolDeactivated;</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="kw">private</span> <span class="cl">XRGrabInteractable</span> <span class="nm">_grab</span>;</span>
+<span class="code-line">    <span class="kw">private bool</span> <span class="nm">_isHeld</span>;</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="kw">private void</span> <span class="fn">Awake</span>()</span>
+<span class="code-line">    {</span>
+<span class="code-line">        _grab = <span class="fn">GetComponent</span>&lt;<span class="cl">XRGrabInteractable</span>&gt;();</span>
+<span class="code-line">        _grab.selectEntered.<span class="fn">AddListener</span>(_ =&gt; _isHeld = <span class="kw">true</span>);</span>
+<span class="code-line">        _grab.selectExited.<span class="fn">AddListener</span>(_ =&gt; _isHeld = <span class="kw">false</span>);</span>
+<span class="code-line">        _grab.activated.<span class="fn">AddListener</span>(<span class="fn">OnActivate</span>);</span>
+<span class="code-line">        _grab.deactivated.<span class="fn">AddListener</span>(_ =&gt; onToolDeactivated?.<span class="fn">Invoke</span>());</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="kw">private void</span> <span class="fn">OnActivate</span>(<span class="cl">ActivateEventArgs</span> <span class="nm">args</span>)</span>
+<span class="code-line">    {</span>
+<span class="code-line">        <span class="kw">if</span> (!_isHeld) <span class="kw">return</span>;</span>
+<span class="code-line"></span>
+<span class="code-line">        <span class="cl">Collider</span>[] <span class="nm">hits</span> = <span class="cl">Physics</span>.<span class="fn">OverlapSphere</span>(transform.position, toolRange, interactableLayer);</span>
+<span class="code-line">        <span class="kw">foreach</span> (<span class="kw">var</span> <span class="nm">hit</span> <span class="kw">in</span> hits)</span>
+<span class="code-line">        {</span>
+<span class="code-line">            onToolActivated?.<span class="fn">Invoke</span>(hit);</span>
+<span class="code-line">        }</span>
+<span class="code-line"></span>
+<span class="code-line">        haptics?.<span class="fn">SendHapticImpulse</span>(<span class="nm">0.4f</span>, <span class="nm">0.1f</span>);</span>
+<span class="code-line">    }</span>
+<span class="code-line">}</span></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="api">
+  <div class="container">
+    <div class="section-label">Backend</div>
+    <h2 class="section-title">API Developer</h2>
+    <p class="section-sub">I build and maintain custom APIs but do not share source code publicly. If you're interested in discussing my API work, reach out directly.</p>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-meta">What I Build</div>
+        <div class="card-title">Custom REST APIs</div>
+        <div class="card-body">Designed and built APIs for game services, including endpoints for authentication, player data, leaderboards, and in-game events. Architecture focused on reliability and low latency.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Note</div>
+        <div class="card-title">Private Codebase</div>
+        <div class="card-body">The API I developed is actively in use and the source is kept private. I'm happy to discuss the architecture, stack choices, and approach in a conversation, just get in touch via Discord.</div>
+      </div>
+    </div>
+    <div class="note-box" style="margin-top: 20px;">
+      <strong>Want to know more?</strong> DM me on Discord at <strong>swifterandfaster</strong> to discuss API architecture, tech stack, and what I've built.
+    </div>
+  </div>
+</section>
+
+<section id="leveldesign">
+  <div class="container">
+    <div class="section-label">Creative</div>
+    <h2 class="section-title">Level Designer</h2>
+    <p class="section-sub">Designing VR-first environments with a focus on player flow, spatial clarity, and immersive atmosphere. Screenshots from recent work below.</p>
+
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="assets/Screenshot 2026-02-23 110415.png" alt="Level Design Screenshot | Feb 23 2026" loading="lazy" />
+        <div class="gallery-label">Level Design · Feb 23</div>
+      </div>
+      <div class="gallery-item">
+        <img src="assets/Screenshot 2026-02-18 162831.png" alt="Level Design Screenshot | Feb 18 2026" loading="lazy" />
+        <div class="gallery-label">Level Design · Feb 18</div>
+      </div>
+      <div class="gallery-item">
+        <img src="assets/Screenshot 2026-02-13 203100.png" alt="Level Design Screenshot | Feb 13 2026" loading="lazy" />
+        <div class="gallery-label">Level Design · Feb 13</div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 28px;">
+      <div class="card">
+        <div class="card-meta">Focus Area</div>
+        <div class="card-title">VR Spatial Design</div>
+        <div class="card-body">Levels designed specifically for VR, accounting for comfort, scale, interaction reach zones, and locomotion flow that feels natural in headset.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Focus Area</div>
+        <div class="card-title">Gameplay-First Layouts</div>
+        <div class="card-body">Every layout decision is grounded in how it changes player behaviour, sightlines, pacing, cover, traversal routes, and moments of discovery.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="vr">
+  <div class="container">
+    <div class="section-label">Immersive Tech</div>
+    <h2 class="section-title">VR Developer</h2>
+    <p class="section-sub">Specialising exclusively in VR development. Building for Meta Quest and PC VR platforms using Unity XR Toolkit.</p>
+
+    <div class="stat-grid">
+      <div class="stat-item">
+        <span class="stat-value">VR</span>
+        <div class="stat-label">Only Platform Focus</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">XR</span>
+        <div class="stat-label">Unity Toolkit</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">6DOF</span>
+        <div class="stat-label">Interaction Depth</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">Live</span>
+        <div class="stat-label">Shipped Title</div>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-meta">System</div>
+        <div class="card-title">Hand Interaction</div>
+        <div class="card-body">Grab mechanics, throw physics, tool use, two-handed interactions, and proximity-based feedback systems.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">System</div>
+        <div class="card-title">Spatial UI</div>
+        <div class="card-body">World-space menus, diegetic interfaces, and UI patterns designed around the constraints and affordances of headset use.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">System</div>
+        <div class="card-title">Comfort Engineering</div>
+        <div class="card-body">Locomotion systems designed to minimise motion sickness, snap turn, comfort vignettes, and movement tuning.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="northline">
+  <div class="container">
+    <div class="section-label">Live Project</div>
+    <h2 class="section-title">Northline Games</h2>
+    <p class="section-sub">Building and running AirBall VR under Northline Games, from development to management.</p>
+
+    <div class="northline-card">
+      <div class="northline-header">
+        <div>
+          <div class="northline-titles">
+            <div class="title-badge">🎮 Lead Developer @ Northline Games</div>
+            <div class="title-badge teal">📋 Management @ Northline Games</div>
+          </div>
+          <h3 style="font-size: 26px; color: #fff; margin-bottom: 10px; font-family: 'Chakra Petch', sans-serif;">AirBall VR</h3>
+          <p style="color: var(--muted); font-size: 13px; max-width: 520px; line-height: 1.8;">
+            AirBall VR is an active VR title developed and maintained under Northline Games. As Lead Developer I own the technical roadmap, architecture decisions, and feature development. As part of the management team I coordinate releases, community operations, and contributor direction.
+          </p>
+        </div>
+        <a href="https://discord.gg/v96Ur3gkSC" target="_blank" rel="noopener noreferrer" class="discord-btn">
+          <svg width="18" height="14" viewBox="0 0 71 55" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60.1 4.9A58.5 58.5 0 0 0 45.5.9a40.8 40.8 0 0 0-1.8 3.6 54.1 54.1 0 0 0-16.3 0A39.1 39.1 0 0 0 25.6.9 58.4 58.4 0 0 0 11 5C1.6 19 -1 32.6.3 46.1c6.2 4.5 12.2 7.3 18.1 9.1a43.8 43.8 0 0 0 3.8-6.2 38.2 38.2 0 0 1-6-2.9l1.5-1.1c11.5 5.3 24 5.3 35.4 0l1.5 1.1a38.4 38.4 0 0 1-6 2.9 43.6 43.6 0 0 0 3.8 6.2c5.9-1.8 11.9-4.6 18.1-9.1C71.7 30.4 67.4 16.9 60.1 4.9ZM23.7 38c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.2 6.4-7.2c3.5 0 6.4 3.2 6.3 7.2 0 3.9-2.8 7.1-6.3 7.1Zm23.6 0c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.2 6.4-7.2c3.5 0 6.4 3.2 6.3 7.2 0 3.9-2.8 7.1-6.3 7.1Z" fill="currentColor"/></svg>
+          Join Discord
+        </a>
+      </div>
+
+      <div class="grid-3">
+        <div class="card" style="background: var(--bg3);">
+          <div class="card-meta">Role</div>
+          <div class="card-title">Lead Developer</div>
+          <div class="card-body">Owning all technical decisions, architecture, engine upgrades, performance, and new system design for the game.</div>
+        </div>
+        <div class="card" style="background: var(--bg3);">
+          <div class="card-meta">Role</div>
+          <div class="card-title">Management</div>
+          <div class="card-body">Coordinating the team, managing the development roadmap, overseeing releases, and handling studio operations.</div>
+        </div>
+        <div class="card" style="background: var(--bg3);">
+          <div class="card-meta">Platform</div>
+          <div class="card-title">VR | AirBall VR</div>
+          <div class="card-body">Active VR game title under the Northline Games label. Join the Discord community to follow development updates.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="modding">
+  <div class="container">
+    <div class="section-label">Tools</div>
+    <h2 class="section-title">Modding &amp; Tools</h2>
+    <p class="section-sub">Beyond game development, I build tools for the modding community. My own injector is publicly available on GitHub.</p>
+
+    <div class="modding-feature">
+      <div class="mf-icon">💉</div>
+      <div>
+        <div class="mf-title">Swift's Injector</div>
+        <div class="mf-body">
+          A custom-built injector I developed and maintain for the modding community. Built from scratch with usability in mind, not a fork or reskin of existing tools. Open source and actively maintained on GitHub.
+        </div>
+        <a href="https://github.com/swifterandfaster/Swift-s-Injector" target="_blank" rel="noopener noreferrer" class="github-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.03-1.6-4.03-1.6-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.23 1.84 1.23 1.07 1.84 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12.01 12.01 0 0 0 24 12C24 5.37 18.63 0 12 0Z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="modding-feature">
+      <div class="mf-icon">🔧</div>
+      <div>
+        <div class="mf-title">Modding Expertise</div>
+        <div class="mf-body">Deep understanding of game internals, injection techniques, runtime patching, and the ecosystem around game modding. I use this knowledge to build reliable, community-facing tools.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="container">
+    <div class="section-label">Recognition</div>
+    <h2 class="section-title">Awards &amp; Certifications</h2>
+    <p class="section-sub">Formal recognitions, certifications, and achievements across development, leadership, and community work.</p>
+
+    <div class="badge-grid">
+      <div class="badge">
+        <div class="badge-icon">🏆</div>
+        <div>
+          <div class="badge-name">Jack Petchey Speakout Challenge</div>
+          <div class="badge-sub">Participant, Public speaking and youth leadership programme</div>
+        </div>
+      </div>
+
+      <div class="badge">
+        <div class="badge-icon">🥉</div>
+        <div>
+          <div class="badge-name">Duke of Edinburgh | Bronze Award</div>
+          <div class="badge-sub">Award number pending, completed all sections of the Bronze programme</div>
+        </div>
+      </div>
+
+      <div class="badge">
+        <div class="badge-icon">📘</div>
+        <div>
+          <div class="badge-name">Facebook Community Management</div>
+          <div class="badge-sub">Certificate held privately, DM on Discord to request: <strong>swifterandfaster</strong></div>
+        </div>
+      </div>
+
+      <div class="badge">
+        <div class="badge-icon">📊</div>
+        <div>
+          <div class="badge-name">Use GA4 with Other Tools and Data Sources</div>
+          <div class="badge-sub">Google Skillshop · Earned August 2025</div>
+          <a href="https://skillshop.credential.net/7314561c-f070-47b0-844e-7d5153d8ec3d#acc.vKejotOz" target="_blank" rel="noopener noreferrer" class="badge-link">View Certificate →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-section">
+      <div class="section-label" style="margin-bottom: 0;">Available for work</div>
+      <div class="contact-handle">swifterandfaster</div>
+      <p class="contact-note">Reach out on Discord for hiring enquiries, collaboration, API discussions, or anything else.</p>
+      <div class="contact-methods">
+        <a href="https://github.com/swifterandfaster" target="_blank" rel="noopener noreferrer" class="contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.03-1.6-4.03-1.6-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.23 1.84 1.23 1.07 1.84 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12.01 12.01 0 0 0 24 12C24 5.37 18.63 0 12 0Z"/></svg>
+          GitHub
+        </a>
+        <a href="https://discord.gg/v96Ur3gkSC" target="_blank" rel="noopener noreferrer" class="contact-item">
+          <svg width="18" height="14" viewBox="0 0 71 55" fill="none"><path d="M60.1 4.9A58.5 58.5 0 0 0 45.5.9a40.8 40.8 0 0 0-1.8 3.6 54.1 54.1 0 0 0-16.3 0A39.1 39.1 0 0 0 25.6.9 58.4 58.4 0 0 0 11 5C1.6 19 -1 32.6.3 46.1c6.2 4.5 12.2 7.3 18.1 9.1a43.8 43.8 0 0 0 3.8-6.2 38.2 38.2 0 0 1-6-2.9l1.5-1.1c11.5 5.3 24 5.3 35.4 0l1.5 1.1a38.4 38.4 0 0 1-6 2.9 43.6 43.6 0 0 0 3.8 6.2c5.9-1.8 11.9-4.6 18.1-9.1C71.7 30.4 67.4 16.9 60.1 4.9ZM23.7 38c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.2 6.4-7.2c3.5 0 6.4 3.2 6.3 7.2 0 3.9-2.8 7.1-6.3 7.1Zm23.6 0c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.2 6.4-7.2c3.5 0 6.4 3.2 6.3 7.2 0 3.9-2.8 7.1-6.3 7.1Z" fill="currentColor"/></svg>
+          AirBall VR Discord
+        </a>
+        <div class="contact-item">
+          Discord: swifterandfaster
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>swifterandfaster · Portfolio · Replace the placeholder screenshots in <code>assets/</code> with your actual level design screenshots.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
